@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="About.html">About Us</a></li>
+            <div class="admin">
+             <a href="Admin.html" >Admin login</a>   
+            </div>
+            
+        </ul>
+        
+    </nav>
+
+    <hr class="new" />
+    <marquee behavior="alternate" direction="right"
+      >Cloud Based Student Information ChatBot</marquee
+    >
+    <hr class="new" />
+    <img src="https://img.icons8.com/fluent/100/000000/chatbot.png"/>
+
+    <div class="chatbar">
+        <div class="bot">
+            Hii! I am a bot
+        </div>
+        <button id="chat-button" type="button" class="collapsible">Chat with us!
+            <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+        </button>
+
+        <div class="content">
+            <div class="full-chat-block">
+                <!-- Message Container -->
+                <div class="outer-container">
+                    <div class="chat-container">
+                        <!-- Messages -->
+                        <div id="chatbox">
+                            <h5 id="chat-timestamp"></h5>
+                            <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                        </div>
+
+                        <!-- User input box -->
+                        <div class="chat-bar-input-block">
+                            <div id="userInput">
+                                <input id="textInput" class="input-box" type="text" name="msg"
+                                    placeholder="Tap 'Enter' to send a message">
+                                <p></p>
+                            </div>
+
+                            <div class="chat-bar-icons">
+                                <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
+                                    onclick="heartButton()"></i>
+                                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
+                                    onclick="sendButton()"></i>
+                            </div>
+                        </div>
+
+                        <div id="chat-bar-bottom">
+                            <p></p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+     
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="chat.js"></script>
+<script src="responses.js"></script>
+<script>
+   
+    var studentsData = [
+        {branch: "B.Tech (CSE)", email: "bishtdeepika028@gmail.com", fatherName: "BHAGWAN SINGH BISHT",fatherNumber:"8859132706", studentName: "DEEPIKA BISHT", section:"C", studentNumber:"8859132706", SerialNumber:1},
+        {branch: "B.Tech (CSE)", email: "Sgurminder982@gmail.com", fatherName: "GURMINDER SINGH",fatherNumber:"7017898470", studentName: "PAWANDEEP KAUR", section:"A", studentNumber:"7017898470", SerialNumber:2},
+        {branch: "B.Tech (CSE)", email: "joshiankit2002@gmail.com", fatherName: "GIRISH CHANDRA JOSHI",fatherNumber:"9410740227", studentName: "ANKIT JOSHI", section:"B", studentNumber:"8923219746", SerialNumber:3},
+        {branch: "B.Tech (CSE)", email: "RITISHRISH181@gmail.com", fatherName: "DALIP SINGH",fatherNumber:"9891640333", studentName: "RITISH", section:"J", studentNumber:"9027576619", SerialNumber:4},
+        {branch: "B.Tech (CSE)", email: "niharikadhyani121@gmail.com", fatherName: "DEEPAK CHANDRA DHYANI",fatherNumber:"9412348343", studentName: "NIHARIKA DHYANI", section:"C", studentNumber:"7535050768", SerialNumber:5},
+        {branch: "B.Tech (CSE)", email: "anshi17505@gmail.com", fatherName: "TARUN MAHESHWARI",fatherNumber:"9997013046", studentName: "ANSHIKA MAHESHWARI", section:"A", studentNumber:"7983512700", SerialNumber:6},
+        {branch: "B.Tech (CSE)", email: "KALPANAKATHAIT11@gmail.com", fatherName: "YASHPAL SINGH",fatherNumber:"9456353997", studentName: "KM KALPANA", section:"A", studentNumber:"9389509742", SerialNumber:7},
+        {branch: "B.Tech (CSE)", email: "pranjalikothari0305@gmail.com", fatherName: "PL KOTHARI",fatherNumber:"8423578986", studentName: "PRANJALI KOTHARI", section:"B", studentNumber:"7499398528", SerialNumber:8},
+        {branch: "B.Tech (CSE)", email: "ADITIDOBRIYAL111@gmail.com", fatherName: "BHUWAN CHANDRA DOBRIYAL",fatherNumber:"8126677884", studentName: "ADITI DOBRIYAL", section:"G", studentNumber:"9953072837", SerialNumber:9},
+        {branch: "B.Tech (CSE)", email: "anuragsemwal001@gmail.com", fatherName: "SHASHI DHAR SEMWAL",fatherNumber:"8171518406", studentName: "ANURAG SEMWAL", section:"B", studentNumber:"9958281300", SerialNumber:10},
+        {branch: "B.Tech (CSE)", email: "PRAKHARDHYANI1000@gmail.com", fatherName: "DHIRENDER DHYANI",fatherNumber:"8006561634", studentName: "PRAKHAR DHYANI", section:"B", studentNumber:"9528089067", SerialNumber:11},
+        {branch: "B.Tech (CSE)", email: "KORANGARAMA3@gmail.com", fatherName: "KHARAK SINGH KORANGA",fatherNumber:"9713834887", studentName: "RAMA KORANGA", section:"E", studentNumber:"7060157792", SerialNumber:12},
+        {branch: "B.Tech (CSE)", email: "KHUSHISINGH5716@gmail.com", fatherName: "RAJESH KUMAR",fatherNumber:"8937044844", studentName: "KHUSHI SINGH", section:"C", studentNumber:"9548430311", SerialNumber:13},
+        {branch: "B.Tech (CSE)", email: "yashkashyap1110@gmail.com", fatherName: "AJAY KUMAR KASHYAP",fatherNumber:"7018279665", studentName: "YASH KASHYAP", section:"D", studentNumber:"7876331526", SerialNumber:14},
+        {branch: "B.Tech (CSE)", email: "soumili1818@gmail.com", fatherName: "SANJAY KUMAR TAPADAR",fatherNumber:"6201358106", studentName: "SOUMILI TAPADAR", section:"C", studentNumber:"7992339875", SerialNumber:15},
+        {branch: "B.Tech (CSE)", email: "TRIPATHIRITIK3535@gmail.com", fatherName: "ATMDEO TRIPATHI",fatherNumber:"9451724980", studentName: "RITIK TRIPATHI", section:"B", studentNumber:"9721509781", SerialNumber:16},
+        {branch: "B.Tech (CSE)", email: "GAURAB4218@GMAIL.COM",fatherName: "RAJENDRA SINGH",fatherNumber: "8171485894",section: "F",studentName: "GAURAB SINGH",studentNumber: "6396064323",SerialNumber:17},
+        {branch: "B.Tech (CSE)", email: "RSBISHT2003@GMAIL.COM",fatherName: "SURENDER SINGH",fatherNumber: "8126983447",section: "F",studentName: "RAHUL SINGH BISHT",studentNumber: "9756787909",SerialNumber:18},
+        {branch: "B.Tech (CSE)", email: "ROBINBOHRA28@GMAIL.COM",fatherName: "RAJESH KUMAR BOHRA",fatherNumber: "7417738017",section: "H",studentName: "ROBIN BOHRA",studentNumber: "9045468677",SerialNumber:19},
+        {branch: "B.Tech (CSE)", email: "ROHANNEGI688@GMAIL.COM",fatherName: "BALAM SINGH",fatherNumber: "9829940027",section: "E",studentName: "ROHAN SINGH NEGI",studentNumber: "7895859784",SerialNumber:20},
+        {branch: "B.Tech (CSE)", email: "AKSHATRANAKOTI01@GMAIL.COM",fatherName: "SURENDRA PRASAD",fatherNumber: "9410175900",section: "G",studentName: "AKSHAT RANAKOTI",studentNumber: "8630514239",SerialNumber:21},
+        {branch: "B.Tech (CSE)", email: "abhishek.gusain1007fb@gmail.com",fatherName: "BRIJ MOHAN SINGH",fatherNumber: "9760660588",section: "J",studentName: "ABHISHEK GUSAIN",studentNumber: "8279524659",SerialNumber:22},
+        {branch: "B.Tech (CSE)", email: "NEGISHUBHAM440@GMAIL.COM",fatherName: "DHEERAJ SINGH NEGI",fatherNumber: "9675477072",section: "J",studentName: "SHUBHAM NEGI",studentnNmber: "9675477072",SerialNumber:23},
+        {branch: "B.Tech (CSE)", email: "PSASWAL27@GMAIL.COM",fatherName: "ASHOK KUMAR",fatherNumber: "7983962645",section: "A",studentName: "PRAHLAD SINGH ASWAL",studentNumber: "9084615226",SerialNumber:24},
+        {branch: "B.Tech (CSE)", email: "ragupta1203@gmail.com",fatherName: "MAHESH CHAND GUPTA",fatherNumber: "9410379585",section: "C",studentName: "RADHIKA GUPTA",studentNumber: "8057839247",SerialNumber:25},
+        {branch: "B.Tech (CSE)", email: "TARUNASAINI2662@GMAIL.COM",fatherName: "MAHESH SAINI",fatherNumber: "9412714232",section: "B",studentName: "TARUNA SAINI",studentnumber: "9411229896",SerialNumber:26},
+        {branch: "B.Tech (CSE)", email: "SATISHSINGH45264209@GMAIL.COM",fatherName: "RAJESH SINGH",fatherNumber: "9149666639",section: "J",studentName: "SATISH SINGH",studentNumber: "6397835388",SerialNumber:27},
+        {branch: "B.Tech (CSE)", email: "ANKUSHKUMARGD61@GMAIL.COM",fatherName: "RAKESH KUMAR",fatherNumber: "9639375346",section: "M",studentName: "ANKUSH KUMAR",studentNumber: "8449658826",SerialNumber:28},
+        {branch: "B.Tech (CSE)", email: "VAISHRAWAT2020@GMAIL.COM",fatherName: "SHISHU PAL RAWAT",fatherNumber: "7047700689",section: "F",studentName: "VAISHALI RAWAT",studentNumber: "8791761188",SerialNumber:29},
+        {branch: "B.Tech (CSE)", email: "ishitachhetri999@gmail.com",fatherName: "SUMAN SINGH CHHETRI",fatherNumber: "9557167566",section: "E",studentName: "ISHITA CHHETRI",studentNumber: "9997588079",SerialNumber:30},
+        {branch: "B.Tech (CSE)", email: "BINAY06012001@GMAIL.COM",fatherName: "BIPIN CHANDRA",fatherNumber: "9411347778",section: "C",studentName: "BINAY KUMAR LOHANI",studentNumber: "9897491152",SerialNumber:31},
+        {branch: "B.Tech (CSE)", email: "RAINARAWAT02003@GMAIL.COM",fatherName: "MANOHAR SINGH",fatherNumber: "8445997554",section: "C",studentName: "RAINA RAWAT",studentNumber: "8445997554",SerialNumber:32},
+        {branch: "B.Tech (CSE)", email: "ANKITAKUKSAL123@GMAIL.COM",fatherName: "NARAYAN PRASAD KUKSAL",fatherNumber: "9411126487",section: "J",studentName: "ANKITA KUKSAL",studentNumber: "9557778057",SerialNumber:33},
+        {branch: "B.Tech (CSE)", email: "deekshasingh2020.1@gmail.com",fatherName: "DHARMENDRA SINGH",fatherNumber: "6395806560",section: "A",studentName: "DEEKSHA SINGH",studentNumber: "7417805069",SerialNumber:34},
+        {branch: "B.Tech (CSE)", email: "ketkigoel@gmail.com",fatherName: "DEV SHARAN GOEL",fatherNumber: "8476005557",section: "E",studentName: "KETKI GOEL",studentNumber: "8477005557",SerialNumber:35},
+        {branch: "B.Tech (CSE)", email: "myselfraginisingh@gmail.com",fatherName: "AWADHESH SINGH",fatherNumber: "7523032030",section: "G",studentName: "RAGINI Singh",studentNumber: "7523032030",SerialNumber:36},
+        {branch: "B.Tech (CSE)", email: "KK6612465@GMAIL.COM",fatherName: "ASHOK KUMAR",fatherNumber: "8355882259",section: "C",studentName: "KOMAL KUMARI",studentNumber: "8355882259",SerialNumber:37},
+        {branch: "B.Tech (CSE)", email: "madhavarora748@gmail.com",fatherName: "HARIOM ARORA",fatherNumber: "897231850",section: "D",studentName: "ADHAV ARORA",studentNumber: "6397722099",SerialNumber:38},
+        {branch: "B.Tech (CSE)", email: "GUPINDERSINGH96@GMAIL.COM",fatherName: "DEVENDER SINGH",fatherNumber: "9897578345",section: "F",studentName: "Gupinder Singh",studentNumber: "8077898242",SerialNumber:39},
+        {branch: "B.Tech (CSE)", email: "rakshitupd786@gmail.com",fatherName: "GOPAL KRISHNA UPADHYAY",fatherNumber: "7302158866",section: "C",studentName: "RAKSHIT UPADHYAY",studentNumber: "7302158866",SerialNumber:40},
+        {branch: "B.Tech (CSE)", email: "paliwalsandhya2003@gmail.com",fatherName: "JAGDISH PRASAD",fatherNumber: "7351180777",section: "J",studentName: "SANDHYA",studentNumber: "9997837987",SerialNumber:41},
+        {branch: "B.Tech (CSE)", email: "adityapahwa51@gmail.com",fatherName: "DEEDAR SINGH PAHWA",fatherNumber: "7617773138",section: "D",studentName: "ADITYA PAHWA",studentNumber: "7017790718",SerialNumber:42},
+        {branch: "B.Tech (CSE)", email: "ps9627131@gmail.com",fatherName: "SURENDRA SINGH",fatherNumber: "9759388342",section: "I",studentName: "PANKAJ CHADDA",studentNumber: "6395121531",SerialNumber:43},
+        {branch: "B.Tech (CSE)", email: "dhananjaybadoni@gmail.com",fatherName: "AJAY KUMAR BADONI",fatherNumber: "9412009051",section: "F",studentName: "DHANANJAY BADONI",studentNumber: "7668379890",SerialNumber:44},
+        {branch: "B.Tech (CSE)", email: "gvsk1800@gmail.com",fatherName: "GAUR SINGH BISHT",fatherNumber: "7302675291",section: "J",studentName: "SIDDHARTH BISHT",studentNumber: "7302675291",SerialNumber:45},
+        {branch: "B.Tech (CSE)", email: "mshivang091@gmail.com",fatherName: "MOHAN KUMAR MALHOTRA",fatherNumber: "8755755375",section: "A",studentName: "SHIVANG MALHOTRA",studentNumber: "8755755375",SerialNumber:46},
+        {branch: "B.Tech (CSE)", email: "joharsakshi287@gmail.com",fatherName: "KAMAL KISHOR JOHAR",fatherNumber: "9897106051",section: "L",studentName: "SAKSHI JOHAR",studentNumber: "9528846700",SerialNumber:47},
+        {branch: "B.Tech (CSE)", email: "sarikamehra06012002@gmail.com",fatherName: "DALBIR SINGH",fatherNumber: "7001622731",section: "C",studentName: "SARIKA",studentNumber: "7001622731",SerialNumber:48},
+        {branch: "B.Tech (CSE)", email: "sk2812001@gmail.com,CHANDRA SEN",fatherNumber: "9074683027",section: "E",studentName: "SANJAY KUMAR",studentNumber: "8218014957",SerialNumber:49},
+        {branch: "B.Tech (CSE)", email: "joshiswati819@gmail.com",fatherName: "SUNIL CHANDRA JOSHI",fatherNumber: "7060834128",section: "A",studentName: "SWATI JOSHI",studentNumber: "7060834128",SerialNumber:50},
+        {branch: "B.Tech (CSE)", email: "ashish10321@gmail.com",fatherName: "DARWAN SINGH",fatherNumber: "9389837988",section: "M",studentName: "ASHISH SINGH",studentNumber: "9389837988",SerialNumber:51},
+        {branch: "B.Tech (CSE)", email: "CHIRAGSAINI226@GMAIL.COM",fatherName: "NAVEEN SAINI",fatherNumber: "9719632119",section: "C",studentName: "CHIRAG SAINI",studentNumber: "9870942135",SerialNumber:52},
+        {branch: "B.Tech (CSE)", email: "bholanevaishnavi755@gmail.com",fatherName: "KANHAIYA BHOLANE",fatherNumber: "9978240451",section: "B",studentName: "VAISHNAVI KANHAIYA BHOLANE",studentNumber: "8200689113",SerialNumber:53},
+        {branch: "B.Tech (CSE)", email: "NITINBHATT66@GMAIL.COM",fatherName: "NAVEEN BHATT",fatherNumber: "9311374183",section: "B",studentName: "NITIN BHATT",studentNumber: "7011858965",SerialNumber:54},
+        {branch: "B.Tech (CSE)", email: "VISHAL.ANSARI998877@GMAIL.COM",fatherName: "SABIR ALI ANSARI",fatherNumber: "7455899052",section: "C",studentName: "VISHAL ANSARI",studentNumber: "7088685960",SerialNumber:55},
+        {branch: "B.Tech (CSE)", email: "ashishsingh2021av@gmail.com",fatherName: "PHOOL KUMAR",fatherNumber: "8006010488",section: "I",studentName: "ASHISH KUMAR SINGH",studentNumber: "8273591938",SerialNumber:56},
+        {branch: "B.Tech (CSE)", email: "RUPAMDHOUNDIYAL47@GMAIL.COM",fatherName: "S.C DHOUNDIYAL",fatherNumber: "8318105170",section: "G",studentName: "RUPAM DHOUNDIYAL",studentNumber: "8126252977",SerialNumber:57},
+        {branch: "B.Tech (CSE)", email: "aryangusain2013@gmail.com",fatherName: "S S GUSAIN",fatherNumber: "9412394804",section: "E",studentName: "ARYAN GUSAIN",studentNumber: "8279437277",SerialNumber:58},
+        {branch: "B.Tech (CSE)", email: "sachinnegi9936167436@gmail.com",fatherName: "VIJAYA SINGH",fatherNumber: "8890199232",section: "L",studentName: "SACHIN NEGI",studentNumber: "9936167436",SerialNumber:59},
+        {branch: "B.Tech (CSE)", email: "avneetmaankiya@gmail.com",fatherName: "RANJIT SINGH",fatherNumber: "9837074444",section: "C",studentName: "AVNEET SINGH",studentNumber: "9690035006",SerialNumber:60},
+        {branch: "B.Tech (CSE)", email: "TRIPADSUNDRIYAL@GMAIL.COM",fatherName: "DHIRAJ MOHAN SUNDRIYAL",fatherNumber: "8437204543",section: "H",studentName: "T D M SUNDRIYAL",studentNumber: "8427824172",SerialNumber:61},
+        {branch: "B.Tech (CSE)", email: "aryannirwal72@gmail.com",fatherName: "JITENDRA KUMAR",fatherNumber: "6396094379",section: "B",studentName: "ARYAN NIRWAL",studentNumber: "9548605864",SerialNumber:62},
+        {branch: "B.Tech (CSE)", email: "preetamrawat107@gmail.com",fatherName: "NARENDRA SINGH",fatherNumber: "8529768809",section: "C",studentName: "PREETAM RAWAT",studentNumber: "8979749883",SerialNumber:63},
+        {branch: "B.Tech (CSE)", email: "ashishbarthwal1000@gmail.com",fatherName: "SURESHANAND",fatherNumber: "8506090073",section: "K",studentName: "ASHISH BARTHWAL",studentNumber: "7302847353",SerialNumber:63},
+        {branch: "B.Tech (CSE)", email: "ksharma220502@gmail.com",fatherName: "UMESH KUMAR KAUSHIK",fatherNumber: "8810151751",section: "A",studentName: "KHUSHI SHARMA",studentNumber: "9149158187",SerialNumber:64},
+        {branch: "B.Tech (CSE)", email: "RS673599@GMAIL.COM",fatherName: "MAHIPAL SINGH",fatherNumber: "9456512538",section: "E",studentName: "RITIK SINGH",studentNumber: "8890420255",SerialNumber:65},
+        {branch: "B.Tech (CSE)", email: "ankitranazzzz45@gmail.com",fatherName: "SOVAN SINGH",fatherNumber: "7300597591",section: "C",studentName: "ANKIT RANA",studentNumber: "8923010734",SerialNumber:66},
+        {branch: "B.Tech (CSE)", email: "rishabhrawat526@gmail.com",fatherName: "DEVENDRA SINGH RAWAT",fatherNumber: "7895411406",section: "E",studentName: "RISHABH RAWAT",studentNumber: "9410761458",SerialNumber:67},
+        {branch: "B.Tech (CSE)", email: "mukeshbora6066@gmail.com",fatherName: "BHUPAL SINGH",fatherNumber: "6398592596",section: "L",studentName: "MUKESH SINGH",studentNumber: "6398592596",SerialNumber:68},
+        {branch: "B.Tech (CSE)", email: "YASHKHAROLA75@GMAIL.COM",fatherName: "SANDEEP KHAROLA",fatherNumber: "6396013134",section: "L",studentName: "YASH KHAROLA",studentNumber: "9528673501",SerialNumber:69},
+        {branch: "B.Tech (CSE)", email: "abhisheksindhwal11@gmail.com",fatherName: "DHEERAJ SINGH SINDHWAL",fatherNumber: "9456766610",section: "B",studentName: "ABHISHEK SINDHWAL",studentNumber: "9456766610",SerialNumber:70},
+        {branch: "B.Tech (CSE)", email: "JOSHIPALLAVA@GMAIL.COM",fatherName: "P D JOSHI",fatherNumber: "9410397478",section: "C",studentName: "PALLAVA JOSHI",studentNumber: "6398571463",SerialNumber:71},
+        {branch: "B.Tech (CSE)", email: "GAIROLAABHISHEK26@GMAIL.COM",fatherName: "PURSHOTAM PRASAD GAIROLA",fatherNumber: "9319129948",section: "H",studentName: "ABHISHEK GAIROLA",studentNumber: "8218142481",SerialNumber:72},
+        {branch: "B.Tech (CSE)", email: "BABURAM21063@GMAIL.COM",fatherName: "BABU RAM",fatherNumber: "8626871964",section: "G",studentName: "NAVEEN SHARMA",studentNumber: "7876284775",SerialNumber:73},
+        {branch: "B.Tech (CSE)", email: "ASHISHSHARMA150902@GMAIL.COM",fatherName: "RAJ KUMAR SHARMA",fatherNumber: "9456515580",section: "B",studentName: "ASHISH SHARMA",studentNumber: "8077116264",SerialNumber:74},
+        {branch: "B.Tech (CSE)", email: "rishabhnautiyal3289@gmail.com",fatherName: "KUSHLA NAND",fatherNumber: "7579147799",section: "K",studentName: "RISHABH NAUTIYAL",studentNumber: "7983019243",SerialNumber:75},
+        {branch: "B.Tech (CSE)", email: "AJSTAR082@GMAIL.COM",fatherName: "MANBAR NEGI",fatherNumber: "8392909118",section: "H",studentName: "AJAY NEGI",studentNumber: "9548723443",SerialNumber:76},
+        {branch: "B.Tech (CSE)", email: "KARTIKCHAUHAN9986@GMAIL.COM",fatherName: "DESHRAJ CHAUHAN",fatherNumber: "9729135171",section: "D",studentName: "KARTIK",studentNumber: "9027301993",SerialNumber:77},
+        {branch: "B.Tech (CSE)", email: "sarthakbadola97@gmail.com",fatherName: "RAMESH BADOLA",fatherNumber: "9720126466",section: "J",studentName: "SARTHAK BADOLA",studentNumber: "7668751657",SerialNumber:78},
+        {branch: "B.Tech (CSE)", email: "JONUALEX07895998212@GMAIL.COM",fatherName: "BIJU ALEXANDER",fatherNumber: "9997372205",section: "E",studentName: "JOHN ALEXANDER",studentNumber: "8755831571",SerialNumber:79},
+        {branch: "B.Tech (CSE)", email: "RANASAURABH039@GMAIL.COM",fatherName: "DHARAMPAL SINGH RANA",fatherNumber: "8800806196",section: "D",studentName: "SAURABH SINGH RANA",studentNumber: "7017960017",SerialNumber:80},
+        {branch: "B.Tech (CSE)", email: "allabhishekjoshi@gmail.com",fatherName: "J C JOSHI",fatherNumber: "9547834198",section: "B",studentName: "ABHISHEK JOSHI",studentNumber: "9758108132",SerialNumber:81},
+        {branch: "B.Tech (CSE)", email: "abaykandari@gmail.com",fatherName: "KAMAL SINGH KANDARI",fatherNumber: "8791340808",section: "D",studentName: "ABHAY KANDARI",studentNumber: "8791340808",SerialNumber:82},
+        {branch: "B.Tech (CSE)", email: "sandeeprawat56123@gmail.com",fatherName: "RAM SINGH RAWAT",fatherNumber: "9027074894",section: "B",studentName: "SANDEEP SINGH RAWAT",studentNumber: "7055557983",SerialNumber:83},
+        {branch: "B.Tech (CSE)", email: "7NEERAJRAWAT@GMAIL.COM",fatherName: "MAHABIR SINGH RAWAT",fatherNumber: "8979693375",section: "F",studentName: "NEERAJ RAWAT",studentNumber: "9528929950",SerialNumber:84},
+        {branch: "B.Tech (CSE)", email: "agarwal.kshitij01@gmail.com",fatherName: "LATE SHRI KK AGARWAL",fatherNumber: "8279911842",section: "L",studentName: "KSHITIJ AGARWAL",studentNumber: "7302341740",SerialNumber:85},
+        {branch: "B.Tech (CSE)", email: "chickoo11036@gmail.com",fatherName: "RAJENDRA KUMAR ARYA",fatherNumber: "9452980692",section: "C",studentName: "DHEERAJ SINGH",studentNumber: "6394329626",SerialNumber:86},
+
+      
+
+
+
+    ];
+    localStorage.setItem("studentsData", JSON.stringify(studentsData));
+</script>
+</script>
+
+</html>

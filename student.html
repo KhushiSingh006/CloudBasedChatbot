@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+background-color: antiquewhite;
+        }
+        .container{
+            margin: auto;
+            height: 600px;
+            width: 40%;
+            text-align: center;
+            
+            border-radius: 2rem;
+            margin-top: 70px;
+            background-color: white;
+            box-shadow: 0px 50px 50px -50px rgb(173, 169, 167) ;
+        }
+        input[type=text]{
+         width: 80%;
+         padding: 12px 20px;
+         margin: 20px 55px;
+         display: block;
+         border: 3px solid black;
+         box-sizing: border-box; 
+         font-size: 1rem;
+         }
+        button{
+            font-size: 1rem;
+            padding: 12px 20px;
+            font-weight: bold;
+        }
+        button:hover{
+           background-color: green;
+        }
+        label{
+            font-size: 2rem;
+            padding: 12px 20px;
+            font-weight: bold;
+            margin-top: 200px;
+         }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+    <label for="">Add to database</label>
+    <input type="text" id="name" placeholder="Enter student's name" />
+    <input type="text" id="fname" placeholder="Enter father's name" />
+    <input type="text" id="branch" placeholder="Enter branch name(with department)" />
+    <input type="text" id="section" placeholder="Enter section" />
+    <input type="text" id="fnum" placeholder="Enter father's phone number" />
+    <input type="text" id="num" placeholder="Enter student's phone number" />
+    <input type="text" id="email" placeholder="Enter student's email" />
+
+    <button type="submit" onclick="addStudent()">Add</button>
+    </div>
+</body>
+<script src="index.js"></script>
+
+</html>

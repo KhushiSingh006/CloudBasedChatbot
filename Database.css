@@ -1,0 +1,78 @@
+ *{
+     margin: 0px;
+     padding: 0px;
+ }
+ div.container3{
+    margin-left: auto;
+    width: 1000px;
+    height: 700px;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:white;
+    padding:30px;
+    box-shadow: 0 50px 50px -50px darkslategrey;
+    overflow: hidden;
+    overflow-y: scroll;
+    border:2px solid #1c1c1e;
+}
+ div.container3 button.del{
+    margin-left: 280px;
+    background-color:#1c1c1e;
+    border:none;
+    outline: none;
+    border-radius: 2rem;
+    font-size: 14px;
+    padding: 5px 12px;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+div.container3 button.del :visited{
+    color: white;
+}
+div.container3 button.view{
+    margin-left: 200px;
+    color: white;
+    background-color:#1c1c1e;
+    border:none;
+    outline: none;
+    border-radius: 2rem;;
+    font-size: 14px;
+    padding: 5px 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.view:hover{
+opacity: 0.8;
+}
+.del:hover{
+    opacity: 0.8;
+}
+#studentTable{
+        border-collapse: collapse;
+        margin: 25px 0;
+        border: 2px solid rgb(98, 144, 206);
+}
+#studentTable thead tr{
+    background-color: #4a1dc4;
+    color:white;
+    text-align:left;
+    font-weight: bold;
+
+}
+      
+#studentTable th {
+    position: sticky;
+border: 2px solid black;
+    padding:12px 15px;
+    width: 300px;
+    padding: 8px;
+}
+#studentTable tbody tr{
+    background-color:white;
+    border-bottom: 1px solid #dddddd;
+}
